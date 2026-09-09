@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="sr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Окно – преузимање</title>
+<style>
+  body{margin:0;font:16px/1.5 system-ui,Segoe UI,Roboto,sans-serif;color:#111827;background:#f3f4f6}
+  .hero{background:radial-gradient(circle at 50% 20%,#1e3a8a,#0b1220 70%);color:#fff;padding:56px 20px;text-align:center}
+  .hero img{width:120px;border-radius:26px;box-shadow:0 20px 40px rgba(0,0,0,.4)}
+  h1{margin:18px 0 6px;font-size:40px;letter-spacing:.1em} .hero p{color:#bfdbfe;margin:0 auto;max-width:640px}
+  main{max-width:960px;margin:-30px auto 40px;padding:0 20px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .card{background:#fff;border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+  .card h2{margin:0 0 6px;font-size:18px} .card p{margin:4px 0 14px;color:#6b7280;font-size:14px}
+  .btn{display:inline-block;background:#1d4ed8;color:#fff;text-decoration:none;padding:10px 16px;border-radius:10px;font-weight:600}
+  .btn.s{background:#e5e7eb;color:#111827}
+  section{background:#fff;border-radius:16px;padding:22px;margin-top:16px;box-shadow:0 10px 30px rgba(0,0,0,.05)}
+  section h2{font-size:18px;margin:0 0 8px} li{margin:4px 0}
+  code{background:#f1f5f9;padding:1px 6px;border-radius:5px}
+  .note{background:#fffbeb;color:#92400e;border-radius:10px;padding:10px 14px;font-size:14px}
+  footer{text-align:center;color:#6b7280;font-size:13px;padding:20px}
+</style>
+</head>
+<body>
+<div class="hero">
+  <img src="logo.png" alt="Окно">
+  <h1>ОКНО</h1>
+  <p>Читач личне карте који сам попуњава и штампа изјаву бирача (образац НПРС-3) и води списак за РИК (НПРС-5).
+     Без интернета, без чувања адреса и фотографија.</p>
+</div>
+<main>
+  <div class="cards">
+    <div class="card"><h2>Windows 10 / 11</h2><p>Инсталациони чаробњак (.exe). Читач картица и штампач раде одмах.</p>
+      <a class="btn" id="dlWin" href="#">⬇ Преузми за Windows</a></div>
+    <div class="card"><h2>macOS</h2><p>Инсталациони пакет (.pkg).</p>
+      <a class="btn" id="dlMac" href="#">⬇ Преузми за macOS</a></div>
+    <div class="card"><h2>Linux (Ubuntu / Debian)</h2><p>Пакет .deb – дупли клик или <code>sudo apt install ./okno_amd64.deb</code></p>
+      <a class="btn" id="dlDeb" href="#">⬇ Преузми .deb</a></div>
+  </div>
+
+  <section>
+    <h2>Пробна верзија</h2>
+    <p>Инсталација је бесплатна и ради као <b>пробна верзија</b>: сва функционалност је доступна један дан од првог покретања (највише 25 правих штампи); демо картица и симулација штампе раде и после тога. За пуну верзију унесите лиценцни кључ у <i>Подешавања → Лиценца</i>. Кључ важи до датума који је у њему уписан – до краја изборног циклуса.</p>
+    <div class="note">Пре прве употребе: у Подешавањима унесите назив изборне листе, подносиоца и датум избора.
+      Пробајте ток дугметом „Демо картица“ пре него што прикључите читач.</div>
+  </section>
+
+  <section>
+    <h2>Шта вам треба</h2>
+    <ul>
+      <li>USB читач паметних картица (било који PC/SC читач, нпр. Gemalto/Thales, ACS, Omnikey).</li>
+      <li>Ласерски штампач формата А4.</li>
+      <li>Windows 10/11, macOS 12+ или Ubuntu 22.04+.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Заштита података</h2>
+    <p>Апликација чува само оно што РИК тражи у списку бирача: време, име, презиме, ЈМБГ и орган који је извршио оверу.
+       Адреса, фотографија и подаци о личној карти се не чувају. По завршетку изборног циклуса апликација се закључава,
+       а евиденција се брише једним кликом. Апликација не користи интернет.</p>
+  </section>
+
+  <section>
+    <h2>Контакт и лиценце</h2>
+    <p><a href="https://betania.io"><img src="betania-wide.svg" alt="Betania" style="height:36px;width:auto;vertical-align:middle"></a></p>
+    <p><a href="https://github.com/lemara98/okno/releases/latest/download/Okno-uputstvo.pdf"><b>Упутство за кориснике (PDF)</b></a> – корак по корак, са снимцима екрана.</p>
+    <p id="kontakt">Софтвер израдила <b>Betania</b>. За лиценцни кључ, питања и подршку: <a href="mailto:hello@betania.io">hello@betania.io</a></p>
+  </section>
+</main>
+<footer>Окно · верзија <span id="ver">–</span> · © Betania · <a href="mailto:hello@betania.io">hello@betania.io</a></footer>
+<script>
+  // Podesite jednom: GitHub korisnik/organizacija i ime repozitorijuma u kome se objavljuju Release paketi.
+  const REPO = "lemara98/okno";
+  const base = `https://github.com/${REPO}/releases/latest/download/`;
+  document.getElementById('dlWin').href = base + 'Okno-setup.exe';
+  document.getElementById('dlMac').href = base + 'Okno.pkg';
+  document.getElementById('dlDeb').href = base + 'okno_amd64.deb';
+  fetch(`https://api.github.com/repos/${REPO}/releases/latest`).then(r=>r.json()).then(j=>{ if(j.tag_name) document.getElementById('ver').textContent=j.tag_name; }).catch(()=>{});
+</script>
+</body>
+</html>
