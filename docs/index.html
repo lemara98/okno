@@ -36,6 +36,8 @@
       <a class="btn" id="dlMac" href="#">⬇ Преузми за macOS</a></div>
     <div class="card"><h2>Linux (Ubuntu / Debian)</h2><p>Пакет .deb – дупли клик или <code>sudo apt install ./okno_amd64.deb</code></p>
       <a class="btn" id="dlDeb" href="#">⬇ Преузми .deb</a></div>
+    <div class="card"><h2>Без чипа?</h2><p>За бираче са старом личном картом без чипа: образац НПРС-3/26 као PDF са пољима за попуњавање на рачунару.</p>
+      <a class="btn" id="dlPdf" href="#">⬇ Попуњив образац (PDF)</a></div>
   </div>
 
   <section>
@@ -76,6 +78,7 @@
   document.getElementById('dlWin').href = base + 'Okno-setup.exe';
   document.getElementById('dlMac').href = base + 'Okno.pkg';
   document.getElementById('dlDeb').href = base + 'okno_amd64.deb';
+  document.getElementById('dlPdf').href = base + 'NPRS-3-26-izjava-biraca-popunjiva.pdf';
   fetch(`https://api.github.com/repos/${REPO}/releases/latest`).then(r=>r.json()).then(j=>{ if(j.tag_name) document.getElementById('ver').textContent=j.tag_name; }).catch(()=>{});
 </script>
 </body>
