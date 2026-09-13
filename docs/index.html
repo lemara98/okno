@@ -25,7 +25,7 @@
 <div class="hero">
   <img src="logo.png" alt="Окно">
   <h1>ОКНО</h1>
-  <p>Читач личне карте који сам попуњава и штампа изјаву бирача (образац НПРС-3) и води списак за РИК (НПРС-5).
+  <p>Читач личне карте који сам попуњава и штампа изјаву бирача (образац НПРС-3/26) и води списак за РИК (НПРС-4/26).
      Без интернета, без чувања адреса и фотографија.</p>
 </div>
 <main>
@@ -39,6 +39,23 @@
     <div class="card"><h2>Без чипа?</h2><p>За бираче са старом личном картом без чипа: образац НПРС-3/26 као PDF са пољима за попуњавање на рачунару.</p>
       <a class="btn" id="dlPdf" href="#">⬇ Попуњив образац (PDF)</a></div>
   </div>
+
+  <section id="ns" style="border:2px solid #1d4ed8">
+    <h2>Окно НС – за изборе за чланове националних савета националних мањина</h2>
+    <p>Посебно издање истог програма: уместо НПРС-3/26 попуњава <b>званични образац изјаве бирача за националне савете</b>
+       (ХХНС-5, за сваку од 19 мањина које бирају непосредно – двојезично где је прописано, нпр. МАЂНС-5 ћирилица + мађарски)
+       и извози списак бирача у РИК-ов Excel образац ХХНС-6. Мањина се бира у Подешавањима. Инсталира се <b>упоредо</b> са Окном
+       (други назив, фолдер и евиденција). Имена уписана по правопису мањине (нпр. Szabó, Kovács) остају како су на личној карти.</p>
+    <div class="cards" style="margin:12px 0">
+      <div class="card"><h2>Windows 10 / 11</h2><p>Инсталациони чаробњак (.exe), Окно НС.</p>
+        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.3/OknoNS-setup.exe">⬇ Окно НС за Windows</a></div>
+      <div class="card"><h2>Linux (Ubuntu / Debian)</h2><p>Пакет .deb – дупли клик или <code>sudo apt install ./okno-ns_amd64.deb</code></p>
+        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.3/okno-ns_amd64.deb">⬇ Окно НС .deb</a></div>
+    </div>
+    <div class="note">Демо издање: избори за националне савете још нису расписани, па програм користи званичне обрасце РИК-а са избора
+      одржаних 13. 11. 2022 (<a href="https://www.rik.parlament.gov.rs/tekst/326122">РИК – обрасци 2022</a>). Чим РИК објави обрасце
+      за нове изборе, стиже нова верзија – подешавања и евиденција остају. Верзија: <span id="nsVer">ns-v1.0.3</span>.</div>
+  </section>
 
   <section>
     <h2>Пробна верзија</h2>
@@ -80,6 +97,15 @@
   document.getElementById('dlDeb').href = base + 'okno_amd64.deb';
   document.getElementById('dlPdf').href = base + 'NPRS-3-26-izjava-biraca-popunjiva.pdf';
   fetch(`https://api.github.com/repos/${REPO}/releases/latest`).then(r=>r.json()).then(j=>{ if(j.tag_name) document.getElementById('ver').textContent=j.tag_name; }).catch(()=>{});
+  // Окно НС се објављује као pre-release са тагом ns-v*: линкови иду на најновије такво издање (резерва је таг уписан у HTML)
+  fetch(`https://api.github.com/repos/${REPO}/releases?per_page=30`).then(r=>r.json()).then(list=>{
+    const ns = (Array.isArray(list)?list:[]).find(r => r.tag_name && r.tag_name.startsWith('ns-v'));
+    if(!ns) return;
+    const nsBase = `https://github.com/${REPO}/releases/download/${ns.tag_name}/`;
+    document.getElementById('dlNsWin').href = nsBase + 'OknoNS-setup.exe';
+    document.getElementById('dlNsDeb').href = nsBase + 'okno-ns_amd64.deb';
+    document.getElementById('nsVer').textContent = ns.tag_name;
+  }).catch(()=>{});
 </script>
 </body>
 </html>
