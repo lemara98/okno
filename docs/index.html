@@ -32,6 +32,8 @@
   <div class="cards">
     <div class="card"><h2>Windows 10 / 11</h2><p>Инсталациони чаробњак (.exe). Читач картица и штампач раде одмах.</p>
       <a class="btn" id="dlWin" href="#">⬇ Преузми за Windows</a></div>
+    <div class="card"><h2>Windows 7</h2><p>Посебно издање за старије рачунаре (Windows 7 SP1, 64 бита). Без инсталације: распакујте ZIP и покрените <code>Okno.exe</code>. Екран се отвара у прегледачу Chrome, Edge или Firefox.</p>
+      <a class="btn" id="dlWin7" href="https://github.com/lemara98/okno/releases/latest/download/Okno-Windows7.zip">⬇ Преузми за Windows 7</a></div>
     <div class="card"><h2>macOS</h2><p>Инсталациони пакет (.pkg).</p>
       <a class="btn" id="dlMac" href="#">⬇ Преузми за macOS</a></div>
     <div class="card"><h2>Linux (Ubuntu / Debian)</h2><p>Пакет .deb – дупли клик или <code>sudo apt install ./okno_amd64.deb</code></p>
@@ -69,7 +71,7 @@
     <ul>
       <li>USB читач паметних картица (било који PC/SC читач, нпр. Gemalto/Thales, ACS, Omnikey).</li>
       <li>Ласерски штампач формата А4.</li>
-      <li>Windows 10/11, macOS 12+ или Ubuntu 22.04+.</li>
+      <li>Windows 10/11, macOS 12+ или Ubuntu 22.04+. За Windows 7 SP1 (64 бита) постоји посебно издање које екран приказује у прегледачу.</li>
     </ul>
   </section>
 
@@ -93,6 +95,7 @@
   const REPO = "lemara98/okno";
   const base = `https://github.com/${REPO}/releases/latest/download/`;
   document.getElementById('dlWin').href = base + 'Okno-setup.exe';
+  document.getElementById('dlWin7').href = base + 'Okno-Windows7.zip';
   document.getElementById('dlMac').href = base + 'Okno.pkg';
   document.getElementById('dlDeb').href = base + 'okno_amd64.deb';
   document.getElementById('dlPdf').href = base + 'NPRS-3-26-izjava-biraca-popunjiva.pdf';
