@@ -2,7 +2,7 @@
 <html lang="sr">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Окно – преузимање</title>
+<title>Окно и Окно НС – преузимање</title>
 <style>
   body{margin:0;font:16px/1.5 system-ui,Segoe UI,Roboto,sans-serif;color:#111827;background:#f3f4f6}
   .hero{background:radial-gradient(circle at 50% 20%,#1e3a8a,#0b1220 70%);color:#fff;padding:56px 20px;text-align:center}
@@ -19,17 +19,40 @@
   code{background:#f1f5f9;padding:1px 6px;border-radius:5px}
   .note{background:#fffbeb;color:#92400e;border-radius:10px;padding:10px 14px;font-size:14px}
   footer{text-align:center;color:#6b7280;font-size:13px;padding:20px}
+  .proizvodi{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .proizvodi a{display:block;background:#fff;border-radius:16px;padding:18px 22px;box-shadow:0 10px 30px rgba(0,0,0,.08);
+    text-decoration:none;color:#111827;border-top:4px solid var(--boja)}
+  .proizvodi b{display:block;font-size:20px} .proizvodi span{color:#6b7280;font-size:14px}
+  .proizvod{border-top:4px solid var(--boja);scroll-margin-top:12px}
+  .proizvod .cards .card{box-shadow:none;border:1px solid #e5e7eb}
+  .proizvod > h2{font-size:24px;margin:2px 0 8px}
+  .oznaka{display:inline-block;background:var(--boja);color:#fff;font-size:12px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;border-radius:999px;padding:3px 10px}
+  .novo{background:#ecfdf5;color:#065f46;border-radius:10px;padding:10px 14px;font-size:14px;margin:12px 0}
+  #okno,.proizvodi a[href="#okno"]{--boja:#1d4ed8} #ns,.proizvodi a[href="#ns"]{--boja:#0f766e}
+  #ns .btn{background:#0f766e}
+  #okno .cards{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 </style>
 </head>
 <body>
 <div class="hero">
   <img src="logo.png" alt="Окно">
   <h1>ОКНО</h1>
-  <p>Читач личне карте који сам попуњава и штампа изјаву бирача (образац НПРС-3/26) и води списак за РИК (НПРС-4/26).
+  <p>Читач личне карте који сам попуњава и штампа изјаву бирача на званичном обрасцу РИК-а и води списак бирача за РИК.
      Без интернета, без чувања адреса и фотографија.</p>
 </div>
 <main>
-  <div class="cards">
+  <nav class="proizvodi" aria-label="Производи">
+    <a href="#okno"><b>Окно</b><span>избори за народне посланике · обрасци НПРС-3/26 и НПРС-4/26</span></a>
+    <a href="#ns"><b>Окно НС</b><span>избори за националне савете националних мањина · обрасци ХХНС-5 и ХХНС-6</span></a>
+  </nav>
+
+  <section id="okno" class="proizvod">
+    <span class="oznaka">Избори за народне посланике</span>
+    <h2>Окно</h2>
+    <p>Попуњава и штампа <b>изјаву бирача да подржава изборну листу</b> (образац НПРС-3/26) чим се лична карта стави у читач
+       и води списак бирача за РИК (НПРС-4/26, извоз у Excel).</p>
+  <div class="cards" style="margin:12px 0">
     <div class="card"><h2>Windows 10 / 11</h2><p>Инсталациони чаробњак (.exe). Читач картица и штампач раде одмах.</p>
       <a class="btn" id="dlWin" href="#">⬇ Преузми за Windows</a></div>
     <div class="card"><h2>macOS</h2><p>Инсталациони пакет (.pkg).</p>
@@ -39,30 +62,39 @@
     <div class="card"><h2>Без чипа?</h2><p>За бираче са старом личном картом без чипа: образац НПРС-3/26 као PDF са пољима за попуњавање на рачунару.</p>
       <a class="btn" id="dlPdf" href="#">⬇ Попуњив образац (PDF)</a></div>
   </div>
+    <p><a href="https://github.com/lemara98/okno/releases/latest/download/Okno-uputstvo.pdf"><b>Упутство за кориснике (PDF)</b></a> · верзија: <span id="ver2">–</span></p>
+  </section>
 
-  <section id="ns" style="border:2px solid #1d4ed8">
-    <h2>Окно НС – за изборе за чланове националних савета националних мањина</h2>
+  <section id="ns" class="proizvod">
+    <span class="oznaka">Избори за националне савете националних мањина</span>
+    <h2>Окно НС</h2>
     <p>Посебно издање истог програма: уместо НПРС-3/26 попуњава <b>званични образац изјаве бирача за националне савете</b>
        (ХХНС-5, за сваку од 19 мањина које бирају непосредно – двојезично где је прописано, нпр. МАЂНС-5 ћирилица + мађарски)
        и извози списак бирача у РИК-ов Excel образац ХХНС-6. Мањина се бира у Подешавањима. Инсталира се <b>упоредо</b> са Окном
-       (други назив, фолдер и евиденција). Имена уписана по правопису мањине (нпр. Szabó, Kovács) остају како су на личној карти.</p>
+       (други назив, фолдер и евиденција).</p>
+    <div class="novo"><b>Ново у верзији 1.0.5 – имена на језицима свих 19 мањина.</b> Име које је на личној карти уписано по правопису
+      мањине (нпр. SZABÓ ERZSÉBET, HOXHA SHQIPE, JIŘÍ DVOŘÁK, ΓΙΩΡΓΟΣ ΠΑΠΑΔΟΠΟΥΛΟΣ) Окно НС само преноси у српску ћирилицу по Правопису,
+      према језику <b>изабране мањине</b>: албански (и за Ашкалије и Египћане), мађарски, румунски, влашки, словачки, чешки, пољски,
+      немачки, грчки, руски, украјински, русински, бугарски, словеначки, бошњачки, буњевачки и ромски. На изјави и у списку стоји
+      <b>САБО ЕРЖЕБЕТ (SZABÓ ERZSÉBET)</b> – ћирилица и изворни облик са картице; у Подешавањима се може изабрати и само ћирилица
+      или само облик са картице. Име које је већ ћирилицом остаје исто.</div>
     <div class="cards" style="margin:12px 0">
       <div class="card"><h2>Windows 10 / 11</h2><p>Инсталациони чаробњак (.exe), Окно НС.</p>
-        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.4/OknoNS-setup.exe">⬇ Окно НС за Windows</a></div>
+        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.5/OknoNS-setup.exe">⬇ Окно НС за Windows</a></div>
       <div class="card"><h2>Linux (Ubuntu / Debian)</h2><p>Пакет .deb – дупли клик или <code>sudo apt install ./okno-ns_amd64.deb</code></p>
-        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.4/okno-ns_amd64.deb">⬇ Окно НС .deb</a></div>
+        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.5/okno-ns_amd64.deb">⬇ Окно НС .deb</a></div>
     </div>
     <div class="note">Демо издање: избори за националне савете још нису расписани, па програм користи званичне обрасце РИК-а са избора
       одржаних 13. 11. 2022 (<a href="https://www.rik.parlament.gov.rs/tekst/326122">РИК – обрасци 2022</a>). Чим РИК објави обрасце
-      за нове изборе, стиже нова верзија – подешавања и евиденција остају. Верзија: <span id="nsVer">ns-v1.0.4</span>.</div>
+      за нове изборе, стиже нова верзија – подешавања и евиденција остају. Верзија: <span id="nsVer">ns-v1.0.5</span>.</div>
     <p><b>Лиценца:</b> Окно НС се лиценцира посебно – кључ за Окно (избори за народне посланике) <b>не важи</b> за Окно НС.
        Без кључа ради као пробна верзија, исто као Окно; за кључ за Окно НС пишите на
        <a href="mailto:hello@betania.io">hello@betania.io</a>.</p>
   </section>
 
   <section>
-    <h2>Пробна верзија</h2>
-    <p>Инсталација је бесплатна и ради као <b>пробна верзија</b>: сва функционалност је доступна један дан од првог покретања (највише 25 правих штампи); демо картица и симулација штампе раде и после тога. За пуну верзију унесите лиценцни кључ у <i>Подешавања → Лиценца</i>. Кључ важи до датума који је у њему уписан – до краја изборног циклуса.</p>
+    <h2>Пробна верзија и лиценца – важи за оба производа</h2>
+    <p>Инсталација је бесплатна и ради као <b>пробна верзија</b>: сва функционалност је доступна један дан од првог покретања (највише 25 правих штампи); демо картица и симулација штампе раде и после тога. За пуну верзију унесите лиценцни кључ у <i>Подешавања → Лиценца</i>. Кључ важи до датума који је у њему уписан – до краја изборног циклуса. Окно и Окно НС су посебни производи: сваки има свој кључ.</p>
     <div class="note">Пре прве употребе: у Подешавањима унесите назив изборне листе, подносиоца и датум избора.
       Пробајте ток дугметом „Демо картица“ пре него што прикључите читач.</div>
   </section>
@@ -86,11 +118,10 @@
   <section>
     <h2>Контакт и лиценце</h2>
     <p><a href="https://betania.io"><img src="betania-wide.svg" alt="Betania" style="height:36px;width:auto;vertical-align:middle"></a></p>
-    <p><a href="https://github.com/lemara98/okno/releases/latest/download/Okno-uputstvo.pdf"><b>Упутство за кориснике (PDF)</b></a> – корак по корак, са снимцима екрана.</p>
     <p id="kontakt">Софтвер израдила <b>Betania</b>. За лиценцни кључ, питања и подршку: <a href="mailto:hello@betania.io">hello@betania.io</a></p>
   </section>
 </main>
-<footer>Окно · верзија <span id="ver">–</span> · © Betania · <a href="mailto:hello@betania.io">hello@betania.io</a></footer>
+<footer>Окно <span id="ver">–</span> · Окно НС <span id="nsVer2">–</span> · © Betania · <a href="mailto:hello@betania.io">hello@betania.io</a></footer>
 <script>
   // Podesite jednom: GitHub korisnik/organizacija i ime repozitorijuma u kome se objavljuju Release paketi.
   const REPO = "lemara98/okno";
@@ -99,15 +130,19 @@
   document.getElementById('dlMac').href = base + 'Okno.pkg';
   document.getElementById('dlDeb').href = base + 'okno_amd64.deb';
   document.getElementById('dlPdf').href = base + 'NPRS-3-26-izjava-biraca-popunjiva.pdf';
-  fetch(`https://api.github.com/repos/${REPO}/releases/latest`).then(r=>r.json()).then(j=>{ if(j.tag_name) document.getElementById('ver').textContent=j.tag_name; }).catch(()=>{});
+  fetch(`https://api.github.com/repos/${REPO}/releases/latest`).then(r=>r.json()).then(j=>{ if(j.tag_name){ document.getElementById('ver').textContent=j.tag_name; document.getElementById('ver2').textContent=j.tag_name; } }).catch(()=>{});
   // Окно НС се објављује као pre-release са тагом ns-v*: линкови иду на најновије такво издање (резерва је таг уписан у HTML)
   fetch(`https://api.github.com/repos/${REPO}/releases?per_page=30`).then(r=>r.json()).then(list=>{
-    const ns = (Array.isArray(list)?list:[]).find(r => r.tag_name && r.tag_name.startsWith('ns-v'));
-    if(!ns) return;
-    const nsBase = `https://github.com/${REPO}/releases/download/${ns.tag_name}/`;
-    document.getElementById('dlNsWin').href = nsBase + 'OknoNS-setup.exe';
-    document.getElementById('dlNsDeb').href = nsBase + 'okno-ns_amd64.deb';
-    document.getElementById('nsVer').textContent = ns.tag_name;
+    const nsSva = (Array.isArray(list)?list:[]).filter(r => r.tag_name && r.tag_name.startsWith('ns-v') && !r.draft);
+    if(!nsSva.length) return;
+    // сваки линк иде на најновије издање које ТАЈ фајл заиста има (издање може кратко бити без неког пакета)
+    const veza = (id, fajl) => {
+      const r = nsSva.find(r => (r.assets||[]).some(a => a.name === fajl && a.state === 'uploaded'));
+      if(r) document.getElementById(id).href = `https://github.com/${REPO}/releases/download/${r.tag_name}/${fajl}`;
+    };
+    veza('dlNsWin', 'OknoNS-setup.exe'); veza('dlNsDeb', 'okno-ns_amd64.deb');
+    document.getElementById('nsVer').textContent = nsSva[0].tag_name;
+    document.getElementById('nsVer2').textContent = nsSva[0].tag_name;
   }).catch(()=>{});
 </script>
 </body>
