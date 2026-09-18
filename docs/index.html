@@ -29,10 +29,11 @@
   .oznaka{display:inline-block;background:var(--boja);color:#fff;font-size:12px;font-weight:700;letter-spacing:.06em;
     text-transform:uppercase;border-radius:999px;padding:3px 10px}
   .novo{background:#ecfdf5;color:#065f46;border-radius:10px;padding:10px 14px;font-size:14px;margin:12px 0}
-  #okno,.proizvodi a[href="#okno"]{--boja:#1d4ed8} #ns,.proizvodi a[href="#ns"]{--boja:#0f766e}
-  #ns .btn{background:#0f766e}
+  #okno,.proizvodi a[href="#okno"]{--boja:#1d4ed8} #ns,.proizvodi a[href="#ns"]{--boja:#047857}
+  #ns .btn{background:#047857}
+  #ns select{display:block;width:100%;margin:10px 0 12px;padding:9px 10px;font:inherit;font-size:14px;border:1px solid #d1d5db;border-radius:10px;background:#fff;color:inherit}
   .v{display:block;margin-top:8px;color:#6b7280;font-size:12px}
-  #okno .cards{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  #okno .cards,#ns .cards{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 </style>
 </head>
 <body>
@@ -73,6 +74,8 @@
        (ХХНС-5, за сваку од 19 мањина које бирају непосредно – двојезично где је прописано, нпр. МАЂНС-5 ћирилица + мађарски)
        и извози списак бирача у РИК-ов Excel образац ХХНС-6. Мањина се бира у Подешавањима. Инсталира се <b>упоредо</b> са Окном
        (други назив, фолдер и евиденција).</p>
+    <div class="novo"><b>Ново у верзији 1.0.9 – Окно НС и за macOS, у зеленом руху.</b> Уз Windows и Linux сада постоји и инсталациони
+      пакет за macOS, а Окно НС се од Окна разликује на први поглед: зелени лого, иконица и изглед програма (Окно остаје плаво).</div>
     <div class="novo"><b>Ново у верзији 1.0.5 – имена на језицима свих 19 мањина.</b> Име које је на личној карти уписано по правопису
       мањине (нпр. SZABÓ ERZSÉBET, HOXHA SHQIPE, JIŘÍ DVOŘÁK, ΓΙΩΡΓΟΣ ΠΑΠΑΔΟΠΟΥΛΟΣ) Окно НС само преноси у српску ћирилицу по Правопису,
       према језику <b>изабране мањине</b>: албански (и за Ашкалије и Египћане), мађарски, румунски, влашки, словачки, чешки, пољски,
@@ -81,13 +84,39 @@
       или само облик са картице. Име које је већ ћирилицом остаје исто.</div>
     <div class="cards" style="margin:12px 0">
       <div class="card"><h2>Windows 10 / 11</h2><p>Инсталациони чаробњак (.exe), Окно НС.</p>
-        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.5/OknoNS-setup.exe">⬇ Окно НС за Windows</a> <small class="v" id="vNsWin"></small></div>
+        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.9/OknoNS-setup.exe">⬇ Окно НС за Windows</a> <small class="v" id="vNsWin"></small></div>
+      <div class="card"><h2>macOS</h2><p>Инсталациони пакет (.pkg), Окно НС.</p>
+        <a class="btn" id="dlNsMac" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.9/OknoNS.pkg">⬇ Окно НС за macOS</a> <small class="v" id="vNsMac"></small></div>
       <div class="card"><h2>Linux (Ubuntu / Debian)</h2><p>Пакет .deb – дупли клик или <code>sudo apt install ./okno-ns_amd64.deb</code></p>
-        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.5/okno-ns_amd64.deb">⬇ Окно НС .deb</a> <small class="v" id="vNsDeb"></small></div>
+        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.9/okno-ns_amd64.deb">⬇ Окно НС .deb</a> <small class="v" id="vNsDeb"></small></div>
+      <div class="card"><h2>Без чипа?</h2><p>За бираче са старом личном картом без чипа: званични образац изјаве (ХХНС-5) као PDF
+        са пољима за попуњавање на рачунару. Изаберите националну мањину:</p>
+        <select id="selNsPdf" aria-label="Национална мањина">
+          <option value="izjava-biraca-ns-AL-popunjiva.pdf">албанска – АЛНС-5/22</option>
+          <option value="izjava-biraca-ns-AS-popunjiva.pdf">ашкалијска – АШНС-5/22</option>
+          <option value="izjava-biraca-ns-BO-popunjiva.pdf">бошњачка – БОНС-5/22</option>
+          <option value="izjava-biraca-ns-BUG-popunjiva.pdf">бугарска – БУГНС-5/22</option>
+          <option value="izjava-biraca-ns-BUNJ-popunjiva.pdf">буњевачка – БУЊНС-5/22</option>
+          <option value="izjava-biraca-ns-VL-popunjiva.pdf">влашка – ВЛНС-5/22</option>
+          <option value="izjava-biraca-ns-GR-popunjiva.pdf">грчка – ГРНС-5/22</option>
+          <option value="izjava-biraca-ns-EG-popunjiva.pdf">египатска – ЕГНС-5/22</option>
+          <option value="izjava-biraca-ns-MADJ-popunjiva.pdf">мађарска – МАЂНС-5/22</option>
+          <option value="izjava-biraca-ns-NE-popunjiva.pdf">немачка – НЕНС-5/22</option>
+          <option value="izjava-biraca-ns-PO-popunjiva.pdf">пољска – ПОНС-5/22</option>
+          <option value="izjava-biraca-ns-RO-popunjiva.pdf">ромска – РОНС-5/22</option>
+          <option value="izjava-biraca-ns-RUM-popunjiva.pdf">румунска – РУМНС-5/22</option>
+          <option value="izjava-biraca-ns-RU-popunjiva.pdf">русинска – РУННС-5/22</option>
+          <option value="izjava-biraca-ns-RUS-popunjiva.pdf">руска – РУСНС-5/22</option>
+          <option value="izjava-biraca-ns-SL-popunjiva.pdf">словачка – СЛНС-5/22</option>
+          <option value="izjava-biraca-ns-SLO-popunjiva.pdf">словеначка – СЛОНС-5/22</option>
+          <option value="izjava-biraca-ns-UK-popunjiva.pdf">украјинска – УКНС-5/22</option>
+          <option value="izjava-biraca-ns-CE-popunjiva.pdf">чешка – ЧЕНС-5/22</option>
+        </select>
+        <a class="btn" id="dlNsPdf" href="#" download>⬇ Попуњив образац (PDF)</a></div>
     </div>
     <div class="note">Демо издање: избори за националне савете још нису расписани, па програм користи званичне обрасце РИК-а са избора
       одржаних 13. 11. 2022 (<a href="https://www.rik.parlament.gov.rs/tekst/326122">РИК – обрасци 2022</a>). Чим РИК објави обрасце
-      за нове изборе, стиже нова верзија – подешавања и евиденција остају. Верзија: <span id="nsVer">ns-v1.0.5</span>.</div>
+      за нове изборе, стиже нова верзија – подешавања и евиденција остају. Верзија: <span id="nsVer">ns-v1.0.9</span>.</div>
     <p><b>Лиценца:</b> Окно НС се лиценцира посебно – кључ за Окно (избори за народне посланике) <b>не важи</b> за Окно НС.
        Без кључа ради као пробна верзија, исто као Окно; за кључ за Окно НС пишите на
        <a href="mailto:hello@betania.io">hello@betania.io</a>.</p>
@@ -131,6 +160,13 @@
   document.getElementById('dlMac').href = base + 'Okno.pkg';
   document.getElementById('dlDeb').href = base + 'okno_amd64.deb';
   document.getElementById('dlPdf').href = base + 'NPRS-3-26-izjava-biraca-popunjiva.pdf';
+  // Окно НС: попуњив образац за изабрану мањину (фајлови су на самом сајту, docs/obrasci-ns/); избор се памти
+  (function(){
+    const sel = document.getElementById('selNsPdf'), dl = document.getElementById('dlNsPdf');
+    try { const z = localStorage.getItem('nsManjinaPdf'); if(z && [...sel.options].some(o => o.value === z)) sel.value = z; } catch(e){}
+    const osvezi = () => { dl.href = 'obrasci-ns/' + sel.value; try { localStorage.setItem('nsManjinaPdf', sel.value); } catch(e){} };
+    sel.addEventListener('change', osvezi); osvezi();
+  })();
   // Сваки линк иде на најновије издање које ТАЈ фајл заиста има – издање може бити само за неке системе
   // (нпр. v1.0.4 само Linux). Окно: тагови v*, Окно НС: pre-release са таговима ns-v*. Резерва су линкови изнад.
   fetch(`https://api.github.com/repos/${REPO}/releases?per_page=40`).then(r=>r.json()).then(list=>{
@@ -145,7 +181,7 @@
     const okno = sva.filter(r => /^v\d/.test(r.tag_name)), ns = sva.filter(r => r.tag_name.startsWith('ns-v'));
     veza(okno, 'dlWin', 'vWin', 'Okno-setup.exe'); veza(okno, 'dlMac', 'vMac', 'Okno.pkg');
     const vDeb = veza(okno, 'dlDeb', 'vDeb', 'okno_amd64.deb'); veza(okno, 'dlPdf', null, 'NPRS-3-26-izjava-biraca-popunjiva.pdf');
-    veza(ns, 'dlNsWin', 'vNsWin', 'OknoNS-setup.exe'); veza(ns, 'dlNsDeb', 'vNsDeb', 'okno-ns_amd64.deb');
+    veza(ns, 'dlNsWin', 'vNsWin', 'OknoNS-setup.exe'); veza(ns, 'dlNsMac', 'vNsMac', 'OknoNS.pkg'); veza(ns, 'dlNsDeb', 'vNsDeb', 'okno-ns_amd64.deb');
     if(ns.length){ document.getElementById('nsVer').textContent = ns[0].tag_name; document.getElementById('nsVer2').textContent = ns[0].tag_name; }
     if(okno.length){ document.getElementById('ver').textContent = okno[0].tag_name; document.getElementById('ver2').textContent = okno[0].tag_name; }
   }).catch(()=>{});
