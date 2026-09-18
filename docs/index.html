@@ -31,6 +31,7 @@
   .novo{background:#ecfdf5;color:#065f46;border-radius:10px;padding:10px 14px;font-size:14px;margin:12px 0}
   #okno,.proizvodi a[href="#okno"]{--boja:#1d4ed8} #ns,.proizvodi a[href="#ns"]{--boja:#0f766e}
   #ns .btn{background:#0f766e}
+  .v{display:block;margin-top:8px;color:#6b7280;font-size:12px}
   #okno .cards{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
 </style>
 </head>
@@ -54,11 +55,11 @@
        и води списак бирача за РИК (НПРС-4/26, извоз у Excel).</p>
   <div class="cards" style="margin:12px 0">
     <div class="card"><h2>Windows 10 / 11</h2><p>Инсталациони чаробњак (.exe). Читач картица и штампач раде одмах.</p>
-      <a class="btn" id="dlWin" href="#">⬇ Преузми за Windows</a></div>
+      <a class="btn" id="dlWin" href="#">⬇ Преузми за Windows</a> <small class="v" id="vWin"></small></div>
     <div class="card"><h2>macOS</h2><p>Инсталациони пакет (.pkg).</p>
-      <a class="btn" id="dlMac" href="#">⬇ Преузми за macOS</a></div>
+      <a class="btn" id="dlMac" href="#">⬇ Преузми за macOS</a> <small class="v" id="vMac"></small></div>
     <div class="card"><h2>Linux (Ubuntu / Debian)</h2><p>Пакет .deb – дупли клик или <code>sudo apt install ./okno_amd64.deb</code></p>
-      <a class="btn" id="dlDeb" href="#">⬇ Преузми .deb</a></div>
+      <a class="btn" id="dlDeb" href="#">⬇ Преузми .deb</a> <small class="v" id="vDeb"></small></div>
     <div class="card"><h2>Без чипа?</h2><p>За бираче са старом личном картом без чипа: образац НПРС-3/26 као PDF са пољима за попуњавање на рачунару.</p>
       <a class="btn" id="dlPdf" href="#">⬇ Попуњив образац (PDF)</a></div>
   </div>
@@ -80,9 +81,9 @@
       или само облик са картице. Име које је већ ћирилицом остаје исто.</div>
     <div class="cards" style="margin:12px 0">
       <div class="card"><h2>Windows 10 / 11</h2><p>Инсталациони чаробњак (.exe), Окно НС.</p>
-        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.5/OknoNS-setup.exe">⬇ Окно НС за Windows</a></div>
+        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.5/OknoNS-setup.exe">⬇ Окно НС за Windows</a> <small class="v" id="vNsWin"></small></div>
       <div class="card"><h2>Linux (Ubuntu / Debian)</h2><p>Пакет .deb – дупли клик или <code>sudo apt install ./okno-ns_amd64.deb</code></p>
-        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.5/okno-ns_amd64.deb">⬇ Окно НС .deb</a></div>
+        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.5/okno-ns_amd64.deb">⬇ Окно НС .deb</a> <small class="v" id="vNsDeb"></small></div>
     </div>
     <div class="note">Демо издање: избори за националне савете још нису расписани, па програм користи званичне обрасце РИК-а са избора
       одржаних 13. 11. 2022 (<a href="https://www.rik.parlament.gov.rs/tekst/326122">РИК – обрасци 2022</a>). Чим РИК објави обрасце
@@ -130,19 +131,23 @@
   document.getElementById('dlMac').href = base + 'Okno.pkg';
   document.getElementById('dlDeb').href = base + 'okno_amd64.deb';
   document.getElementById('dlPdf').href = base + 'NPRS-3-26-izjava-biraca-popunjiva.pdf';
-  fetch(`https://api.github.com/repos/${REPO}/releases/latest`).then(r=>r.json()).then(j=>{ if(j.tag_name){ document.getElementById('ver').textContent=j.tag_name; document.getElementById('ver2').textContent=j.tag_name; } }).catch(()=>{});
-  // Окно НС се објављује као pre-release са тагом ns-v*: линкови иду на најновије такво издање (резерва је таг уписан у HTML)
-  fetch(`https://api.github.com/repos/${REPO}/releases?per_page=30`).then(r=>r.json()).then(list=>{
-    const nsSva = (Array.isArray(list)?list:[]).filter(r => r.tag_name && r.tag_name.startsWith('ns-v') && !r.draft);
-    if(!nsSva.length) return;
-    // сваки линк иде на најновије издање које ТАЈ фајл заиста има (издање може кратко бити без неког пакета)
-    const veza = (id, fajl) => {
-      const r = nsSva.find(r => (r.assets||[]).some(a => a.name === fajl && a.state === 'uploaded'));
-      if(r) document.getElementById(id).href = `https://github.com/${REPO}/releases/download/${r.tag_name}/${fajl}`;
+  // Сваки линк иде на најновије издање које ТАЈ фајл заиста има – издање може бити само за неке системе
+  // (нпр. v1.0.4 само Linux). Окно: тагови v*, Окно НС: pre-release са таговима ns-v*. Резерва су линкови изнад.
+  fetch(`https://api.github.com/repos/${REPO}/releases?per_page=40`).then(r=>r.json()).then(list=>{
+    const sva = (Array.isArray(list)?list:[]).filter(r => r.tag_name && !r.draft);
+    const veza = (izdanja, id, vid, fajl) => {
+      const r = izdanja.find(r => (r.assets||[]).some(a => a.name === fajl && a.state === 'uploaded'));
+      if(!r) return;
+      document.getElementById(id).href = `https://github.com/${REPO}/releases/download/${r.tag_name}/${fajl}`;
+      if(vid) document.getElementById(vid).textContent = 'верзија ' + r.tag_name;
+      return r.tag_name;
     };
-    veza('dlNsWin', 'OknoNS-setup.exe'); veza('dlNsDeb', 'okno-ns_amd64.deb');
-    document.getElementById('nsVer').textContent = nsSva[0].tag_name;
-    document.getElementById('nsVer2').textContent = nsSva[0].tag_name;
+    const okno = sva.filter(r => /^v\d/.test(r.tag_name)), ns = sva.filter(r => r.tag_name.startsWith('ns-v'));
+    veza(okno, 'dlWin', 'vWin', 'Okno-setup.exe'); veza(okno, 'dlMac', 'vMac', 'Okno.pkg');
+    const vDeb = veza(okno, 'dlDeb', 'vDeb', 'okno_amd64.deb'); veza(okno, 'dlPdf', null, 'NPRS-3-26-izjava-biraca-popunjiva.pdf');
+    veza(ns, 'dlNsWin', 'vNsWin', 'OknoNS-setup.exe'); veza(ns, 'dlNsDeb', 'vNsDeb', 'okno-ns_amd64.deb');
+    if(ns.length){ document.getElementById('nsVer').textContent = ns[0].tag_name; document.getElementById('nsVer2').textContent = ns[0].tag_name; }
+    if(okno.length){ document.getElementById('ver').textContent = okno[0].tag_name; document.getElementById('ver2').textContent = okno[0].tag_name; }
   }).catch(()=>{});
 </script>
 </body>
