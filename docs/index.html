@@ -74,6 +74,10 @@
        (ХХНС-5, за сваку од 19 мањина које бирају непосредно – двојезично где је прописано, нпр. МАЂНС-5 ћирилица + мађарски)
        и извози списак бирача у РИК-ов Excel образац ХХНС-6. Мањина се бира у Подешавањима. Инсталира се <b>упоредо</b> са Окном
        (други назив, фолдер и евиденција).</p>
+    <div class="novo"><b>Ново у верзији 1.0.10 – провера у посебном бирачком списку и захтев за упис.</b> Кад се у подешавањима
+      укључи провера, Окно НС пита посебан бирачки списак изабране мањине. Ако бирач није уписан, једним кликом штампа
+      захтев за упис у посебан бирачки списак (Образац 2), попуњен са личне карте – бирач га потписује и предаје
+      општинској управи према пребивалишту.</div>
     <div class="novo"><b>Ново у верзији 1.0.9 – Окно НС и за macOS, у зеленом руху.</b> Уз Windows и Linux сада постоји и инсталациони
       пакет за macOS, а Окно НС се од Окна разликује на први поглед: зелени лого, иконица и изглед програма (Окно остаје плаво).</div>
     <div class="novo"><b>Ново у верзији 1.0.5 – имена на језицима свих 19 мањина.</b> Име које је на личној карти уписано по правопису
@@ -84,11 +88,11 @@
       или само облик са картице. Име које је већ ћирилицом остаје исто.</div>
     <div class="cards" style="margin:12px 0">
       <div class="card"><h2>Windows 10 / 11</h2><p>Инсталациони чаробњак (.exe), Окно НС.</p>
-        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.9/OknoNS-setup.exe">⬇ Окно НС за Windows</a> <small class="v" id="vNsWin"></small></div>
+        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.10/OknoNS-setup.exe">⬇ Окно НС за Windows</a> <small class="v" id="vNsWin"></small></div>
       <div class="card"><h2>macOS</h2><p>Инсталациони пакет (.pkg), Окно НС.</p>
-        <a class="btn" id="dlNsMac" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.9/OknoNS.pkg">⬇ Окно НС за macOS</a> <small class="v" id="vNsMac"></small></div>
+        <a class="btn" id="dlNsMac" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.10/OknoNS.pkg">⬇ Окно НС за macOS</a> <small class="v" id="vNsMac"></small></div>
       <div class="card"><h2>Linux (Ubuntu / Debian)</h2><p>Пакет .deb – дупли клик или <code>sudo apt install ./okno-ns_amd64.deb</code></p>
-        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.9/okno-ns_amd64.deb">⬇ Окно НС .deb</a> <small class="v" id="vNsDeb"></small></div>
+        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.10/okno-ns_amd64.deb">⬇ Окно НС .deb</a> <small class="v" id="vNsDeb"></small></div>
       <div class="card"><h2>Без чипа?</h2><p>За бираче са старом личном картом без чипа: званични образац изјаве (ХХНС-5) као PDF
         са пољима за попуњавање на рачунару. Изаберите националну мањину:</p>
         <select id="selNsPdf" aria-label="Национална мањина">
@@ -178,7 +182,13 @@
       if(vid) document.getElementById(vid).textContent = 'верзија ' + r.tag_name;
       return r.tag_name;
     };
-    const okno = sva.filter(r => /^v\d/.test(r.tag_name)), ns = sva.filter(r => r.tag_name.startsWith('ns-v'));
+    // GitHub API не враћа издања по датуму ни по верзији (нпр. ns-v1.0.10 стиже иза ns-v1.0.9), па се овде
+    // сортира по броју верзије, бројчано: 1.0.10 је новије од 1.0.9.
+    const brojevi = t => t.replace(/^(ns-)?v/, '').split('.').map(n => parseInt(n, 10) || 0);
+    const novije = (a, b) => { const x = brojevi(a.tag_name), y = brojevi(b.tag_name);
+      for (let i = 0; i < Math.max(x.length, y.length); i++) { const d = (y[i] || 0) - (x[i] || 0); if (d) return d; }
+      return 0; };
+    const okno = sva.filter(r => /^v\d/.test(r.tag_name)).sort(novije), ns = sva.filter(r => r.tag_name.startsWith('ns-v')).sort(novije);
     veza(okno, 'dlWin', 'vWin', 'Okno-setup.exe'); veza(okno, 'dlMac', 'vMac', 'Okno.pkg');
     const vDeb = veza(okno, 'dlDeb', 'vDeb', 'okno_amd64.deb'); veza(okno, 'dlPdf', null, 'NPRS-3-26-izjava-biraca-popunjiva.pdf');
     veza(ns, 'dlNsWin', 'vNsWin', 'OknoNS-setup.exe'); veza(ns, 'dlNsMac', 'vNsMac', 'OknoNS.pkg'); veza(ns, 'dlNsDeb', 'vNsDeb', 'okno-ns_amd64.deb');
