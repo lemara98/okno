@@ -5,7 +5,10 @@
 <title>Окно и Окно НС – преузимање</title>
 <style>
   body{margin:0;font:16px/1.5 system-ui,Segoe UI,Roboto,sans-serif;color:#111827;background:#f3f4f6}
-  .hero{background:radial-gradient(circle at 50% 20%,#1e3a8a,#0b1220 70%);color:#fff;padding:56px 20px;text-align:center}
+  .hero{position:relative;background:radial-gradient(circle at 50% 20%,#1e3a8a,#0b1220 70%);color:#fff;padding:56px 20px;text-align:center}
+  .pismo{position:absolute;top:14px;right:16px;display:flex;border:1px solid rgba(255,255,255,.45);border-radius:999px;overflow:hidden}
+  .pismo button{background:transparent;color:#fff;border:0;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+  .pismo button[aria-pressed="true"]{background:#fff;color:#0b1220;font-weight:600}
   .hero img{width:120px;border-radius:26px;box-shadow:0 20px 40px rgba(0,0,0,.4)}
   h1{margin:18px 0 6px;font-size:40px;letter-spacing:.1em} .hero p{color:#bfdbfe;margin:0 auto;max-width:640px}
   main{max-width:960px;margin:-30px auto 40px;padding:0 20px}
@@ -38,6 +41,9 @@
 </head>
 <body>
 <div class="hero">
+  <div class="pismo bez-prevoda" role="group" aria-label="Писмо / Pismo">
+    <button type="button" data-pismo="cir" aria-pressed="true">Ћирилица</button><button type="button" data-pismo="lat" aria-pressed="false">Latinica</button>
+  </div>
   <img src="logo.png" alt="Окно">
   <h1>ОКНО</h1>
   <p>Читач личне карте који сам попуњава и штампа изјаву бирача на званичном обрасцу РИК-а и води списак бирача за РИК.
@@ -195,6 +201,70 @@
     if(ns.length){ document.getElementById('nsVer').textContent = ns[0].tag_name; document.getElementById('nsVer2').textContent = ns[0].tag_name; }
     if(okno.length){ document.getElementById('ver').textContent = okno[0].tag_name; document.getElementById('ver2').textContent = okno[0].tag_name; }
   }).catch(()=>{});
+</script>
+<script>
+// Писмо странице: ћирилица је подразумевана, латиница се бира дугметом (памти се) или везом ?pismo=lat.
+// Пресловљава се сваки текст на страници, и онај који скрипта допише после учитавања (нпр. ознаке верзија).
+(function(){
+  const JEDNO = {'А':'A','Б':'B','В':'V','Г':'G','Д':'D','Ђ':'Đ','Е':'E','Ж':'Ž','З':'Z','И':'I','Ј':'J','К':'K','Л':'L',
+    'М':'M','Н':'N','О':'O','П':'P','Р':'R','С':'S','Т':'T','Ћ':'Ć','У':'U','Ф':'F','Х':'H','Ц':'C','Ч':'Č','Ш':'Š',
+    'а':'a','б':'b','в':'v','г':'g','д':'d','ђ':'đ','е':'e','ж':'ž','з':'z','и':'i','ј':'j','к':'k','л':'l','м':'m',
+    'н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','ћ':'ć','у':'u','ф':'f','х':'h','ц':'c','ч':'č','ш':'š',
+    'љ':'lj','њ':'nj','џ':'dž'};
+  const DVA = {'Љ':['Lj','LJ'],'Њ':['Nj','NJ'],'Џ':['Dž','DŽ']};
+  const velika = c => !!c && c !== c.toLowerCase() && c === c.toUpperCase();
+  function uLat(t){
+    let o = '';
+    for (let i = 0; i < t.length; i++) {
+      const c = t[i];
+      if (DVA[c]) { const sl = t[i+1] || '', pr = t[i-1] || '';
+        o += (velika(sl) || (!/\S/.test(sl) && velika(pr))) ? DVA[c][1] : DVA[c][0]; }   // ЉУБИЦА → LJUBICA, Љубица → Ljubica
+      else o += (JEDNO[c] !== undefined ? JEDNO[c] : c);
+    }
+    return o;
+  }
+  const CIR = /[Ѐ-ӿ]/, ATR = ['alt', 'title', 'aria-label', 'placeholder'];
+  const origTekst = new WeakMap(), origAtr = new WeakMap(), origNaslov = document.title;
+  let pismo = 'cir';
+  const preskoci = el => el.closest && el.closest('script,style,.bez-prevoda');
+  function tekst(n){
+    if (!n.parentElement || preskoci(n.parentElement)) return;
+    if (!origTekst.has(n)) { if (!CIR.test(n.nodeValue)) return; origTekst.set(n, n.nodeValue); }
+    const cilj = pismo === 'lat' ? uLat(origTekst.get(n)) : origTekst.get(n);
+    if (n.nodeValue !== cilj) n.nodeValue = cilj;
+  }
+  function element(el){
+    if (preskoci(el)) return;
+    let o = origAtr.get(el);
+    for (const a of ATR) { const v = el.getAttribute && el.getAttribute(a); if (v == null) continue;
+      if (!o) { o = {}; origAtr.set(el, o); }
+      if (!(a in o)) { if (!CIR.test(v)) continue; o[a] = v; }
+      el.setAttribute(a, pismo === 'lat' ? uLat(o[a]) : o[a]); }
+  }
+  function prodji(koren){
+    if (koren.nodeType === 3) { tekst(koren); return; }
+    if (koren.nodeType !== 1) return;
+    element(koren);
+    const w = document.createTreeWalker(koren, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT);
+    for (let n = w.nextNode(); n; n = w.nextNode()) n.nodeType === 3 ? tekst(n) : element(n);
+  }
+  function postavi(p, zapamti){
+    pismo = p === 'lat' ? 'lat' : 'cir';
+    document.documentElement.lang = pismo === 'lat' ? 'sr-Latn' : 'sr-Cyrl';
+    document.title = pismo === 'lat' ? uLat(origNaslov) : origNaslov;
+    prodji(document.body);
+    document.querySelectorAll('.pismo button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.pismo === pismo)));
+    if (zapamti) try { localStorage.setItem('okno-pismo', pismo); } catch (e) {}
+  }
+  new MutationObserver(ms => { if (pismo !== 'lat') return;
+    for (const m of ms) m.addedNodes.forEach(prodji); }).observe(document.body, {childList: true, subtree: true});
+  document.querySelectorAll('.pismo button').forEach(b => b.addEventListener('click', () => postavi(b.dataset.pismo, true)));
+  let pocetno = 'cir';
+  try { pocetno = localStorage.getItem('okno-pismo') || 'cir'; } catch (e) {}
+  const izVeze = new URLSearchParams(location.search).get('pismo');
+  if (izVeze === 'lat' || izVeze === 'cir') pocetno = izVeze;
+  postavi(pocetno, false);
+})();
 </script>
 </body>
 </html>
