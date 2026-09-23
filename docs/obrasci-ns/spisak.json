@@ -1,0 +1,149 @@
+[
+ {
+  "kod": "AL",
+  "naziv": "албанска",
+  "oznaka": "Образац АЛНС-5/26",
+  "fajl": "izjava-biraca-ns-AL-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "AS",
+  "naziv": "ашкалијска",
+  "oznaka": "Образац АШНС-5/26",
+  "fajl": "izjava-biraca-ns-AS-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "BO",
+  "naziv": "бошњачка",
+  "oznaka": "Образац БОНС-5/26",
+  "fajl": "izjava-biraca-ns-BO-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "BUG",
+  "naziv": "бугарска",
+  "oznaka": "Образац БУГНС-5/26",
+  "fajl": "izjava-biraca-ns-BUG-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "BUNJ",
+  "naziv": "буњевачка",
+  "oznaka": "Образац БУЊНС-5/26",
+  "fajl": "izjava-biraca-ns-BUNJ-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "VL",
+  "naziv": "влашка",
+  "oznaka": "Образац ВЛНС-5/26",
+  "fajl": "izjava-biraca-ns-VL-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "GR",
+  "naziv": "грчка",
+  "oznaka": "Образац ГРНС-5/26",
+  "fajl": "izjava-biraca-ns-GR-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "EG",
+  "naziv": "египатска",
+  "oznaka": "Образац ЕГНС-5/26",
+  "fajl": "izjava-biraca-ns-EG-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "MADJ",
+  "naziv": "мађарска",
+  "oznaka": "Образац МАЂНС-5/26",
+  "fajl": "izjava-biraca-ns-MADJ-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "MK",
+  "naziv": "македонска",
+  "oznaka": "Образац МАКНС-5/26",
+  "fajl": "izjava-biraca-ns-MK-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "NE",
+  "naziv": "немачка",
+  "oznaka": "Образац НЕНС-5/26",
+  "fajl": "izjava-biraca-ns-NE-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "PO",
+  "naziv": "пољска",
+  "oznaka": "Образац ПОНС-5/26",
+  "fajl": "izjava-biraca-ns-PO-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "RO",
+  "naziv": "ромска",
+  "oznaka": "Образац РОНС-5/26",
+  "fajl": "izjava-biraca-ns-RO-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "RUM",
+  "naziv": "румунска",
+  "oznaka": "Образац РУМНС-5/26",
+  "fajl": "izjava-biraca-ns-RUM-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "RU",
+  "naziv": "русинска",
+  "oznaka": "Образац РУННС-5/26",
+  "fajl": "izjava-biraca-ns-RU-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "SL",
+  "naziv": "словачка",
+  "oznaka": "Образац СЛНС-5/26",
+  "fajl": "izjava-biraca-ns-SL-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "SLO",
+  "naziv": "словеначка",
+  "oznaka": "Образац СЛОНС-5/22",
+  "fajl": "izjava-biraca-ns-SLO-popunjiva.pdf",
+  "obrasci": "2022"
+ },
+ {
+  "kod": "UK",
+  "naziv": "украјинска",
+  "oznaka": "Образац УКНС-5/26",
+  "fajl": "izjava-biraca-ns-UK-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "HR",
+  "naziv": "хрватска",
+  "oznaka": "Образац ХРНС-5/26",
+  "fajl": "izjava-biraca-ns-HR-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "CG",
+  "naziv": "црногорска",
+  "oznaka": "Образац ЦГНС-5/26",
+  "fajl": "izjava-biraca-ns-CG-popunjiva.pdf",
+  "obrasci": "2026"
+ },
+ {
+  "kod": "CE",
+  "naziv": "чешка",
+  "oznaka": "Образац ЧЕНС-5/26",
+  "fajl": "izjava-biraca-ns-CE-popunjiva.pdf",
+  "obrasci": "2026"
+ }
+]
