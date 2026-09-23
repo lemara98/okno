@@ -77,56 +77,64 @@
     <span class="oznaka">Избори за националне савете националних мањина</span>
     <h2>Окно НС</h2>
     <p>Посебно издање истог програма: уместо НПРС-3/26 попуњава <b>званични образац изјаве бирача за националне савете</b>
-       (ХХНС-5, за сваку од 19 мањина које бирају непосредно – двојезично где је прописано, нпр. МАЂНС-5 ћирилица + мађарски)
+       (ХХНС-5/26, за сваку од 21 мањине која бира непосредно 8. 11. 2026 – двојезично где је прописано, нпр. МАЂНС-5 ћирилица + мађарски)
        и извози списак бирача у РИК-ов Excel образац ХХНС-6. Мањина се бира у Подешавањима. Инсталира се <b>упоредо</b> са Окном
        (други назив, фолдер и евиденција).</p>
+    <div class="novo"><b>Ново у верзији 1.0.11 – званични обрасци РИК-а за изборе 8. 11. 2026.</b> РИК је 23. 9. 2026. објавио
+      обрасце за подношење изборних листа (ХХНС-5/26 и ХХНС-6/26), па Окно НС више није демо: штампа нове обрасце за свих
+      21 мањину која бира непосредно – уз досадашњих 18 сада и <b>македонску, хрватску и црногорску</b> (руска 2026. бира преко
+      електорске скупштине). Циљ потписа се сам поставља на најмањи број изјава по Информацији РИК-а (нпр. мађарска 1.073,
+      бошњачка 1.132, ромска 610). За словеначку мањину РИК још није поставио образац 2026 – привремено остаје образац 2022,
+      јасно означен у програму.</div>
     <div class="novo"><b>Ново у верзији 1.0.10 – провера у посебном бирачком списку и захтев за упис.</b> Кад се у подешавањима
       укључи провера, Окно НС пита посебан бирачки списак изабране мањине. Ако бирач није уписан, једним кликом штампа
       захтев за упис у посебан бирачки списак (Образац 2), попуњен са личне карте – бирач га потписује и предаје
       општинској управи према пребивалишту.</div>
     <div class="novo"><b>Ново у верзији 1.0.9 – Окно НС и за macOS, у зеленом руху.</b> Уз Windows и Linux сада постоји и инсталациони
       пакет за macOS, а Окно НС се од Окна разликује на први поглед: зелени лого, иконица и изглед програма (Окно остаје плаво).</div>
-    <div class="novo"><b>Ново у верзији 1.0.5 – имена на језицима свих 19 мањина.</b> Име које је на личној карти уписано по правопису
+    <div class="novo"><b>Ново у верзији 1.0.5 – имена на језицима свих мањина.</b> Име које је на личној карти уписано по правопису
       мањине (нпр. SZABÓ ERZSÉBET, HOXHA SHQIPE, JIŘÍ DVOŘÁK, ΓΙΩΡΓΟΣ ΠΑΠΑΔΟΠΟΥΛΟΣ) Окно НС само преноси у српску ћирилицу по Правопису,
       према језику <b>изабране мањине</b>: албански (и за Ашкалије и Египћане), мађарски, румунски, влашки, словачки, чешки, пољски,
-      немачки, грчки, руски, украјински, русински, бугарски, словеначки, бошњачки, буњевачки и ромски. На изјави и у списку стоји
+      немачки, грчки, руски, украјински, русински, бугарски, македонски, словеначки, бошњачки, буњевачки, хрватски, црногорски и ромски. На изјави и у списку стоји
       <b>САБО ЕРЖЕБЕТ (SZABÓ ERZSÉBET)</b> – ћирилица и изворни облик са картице; у Подешавањима се може изабрати и само ћирилица
       или само облик са картице. Име које је већ ћирилицом остаје исто.</div>
     <div class="cards" style="margin:12px 0">
       <div class="card"><h2>Windows 10 / 11</h2><p>Инсталациони чаробњак (.exe), Окно НС.</p>
-        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.10/OknoNS-setup.exe">⬇ Окно НС за Windows</a> <small class="v" id="vNsWin"></small></div>
+        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.11/OknoNS-setup.exe">⬇ Окно НС за Windows</a> <small class="v" id="vNsWin"></small></div>
       <div class="card"><h2>macOS</h2><p>Инсталациони пакет (.pkg), Окно НС.</p>
-        <a class="btn" id="dlNsMac" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.10/OknoNS.pkg">⬇ Окно НС за macOS</a> <small class="v" id="vNsMac"></small></div>
+        <a class="btn" id="dlNsMac" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.11/OknoNS.pkg">⬇ Окно НС за macOS</a> <small class="v" id="vNsMac"></small></div>
       <div class="card"><h2>Linux (Ubuntu / Debian)</h2><p>Пакет .deb – дупли клик или <code>sudo apt install ./okno-ns_amd64.deb</code></p>
-        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.10/okno-ns_amd64.deb">⬇ Окно НС .deb</a> <small class="v" id="vNsDeb"></small></div>
-      <div class="card"><h2>Без чипа?</h2><p>За бираче са старом личном картом без чипа: званични образац изјаве (ХХНС-5) као PDF
+        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.11/okno-ns_amd64.deb">⬇ Окно НС .deb</a> <small class="v" id="vNsDeb"></small></div>
+      <div class="card"><h2>Без чипа?</h2><p>За бираче са старом личном картом без чипа: званични образац изјаве (ХХНС-5/26) као PDF
         са пољима за попуњавање на рачунару. Изаберите националну мањину:</p>
         <select id="selNsPdf" aria-label="Национална мањина">
-          <option value="izjava-biraca-ns-AL-popunjiva.pdf">албанска – АЛНС-5/22</option>
-          <option value="izjava-biraca-ns-AS-popunjiva.pdf">ашкалијска – АШНС-5/22</option>
-          <option value="izjava-biraca-ns-BO-popunjiva.pdf">бошњачка – БОНС-5/22</option>
-          <option value="izjava-biraca-ns-BUG-popunjiva.pdf">бугарска – БУГНС-5/22</option>
-          <option value="izjava-biraca-ns-BUNJ-popunjiva.pdf">буњевачка – БУЊНС-5/22</option>
-          <option value="izjava-biraca-ns-VL-popunjiva.pdf">влашка – ВЛНС-5/22</option>
-          <option value="izjava-biraca-ns-GR-popunjiva.pdf">грчка – ГРНС-5/22</option>
-          <option value="izjava-biraca-ns-EG-popunjiva.pdf">египатска – ЕГНС-5/22</option>
-          <option value="izjava-biraca-ns-MADJ-popunjiva.pdf">мађарска – МАЂНС-5/22</option>
-          <option value="izjava-biraca-ns-NE-popunjiva.pdf">немачка – НЕНС-5/22</option>
-          <option value="izjava-biraca-ns-PO-popunjiva.pdf">пољска – ПОНС-5/22</option>
-          <option value="izjava-biraca-ns-RO-popunjiva.pdf">ромска – РОНС-5/22</option>
-          <option value="izjava-biraca-ns-RUM-popunjiva.pdf">румунска – РУМНС-5/22</option>
-          <option value="izjava-biraca-ns-RU-popunjiva.pdf">русинска – РУННС-5/22</option>
-          <option value="izjava-biraca-ns-RUS-popunjiva.pdf">руска – РУСНС-5/22</option>
-          <option value="izjava-biraca-ns-SL-popunjiva.pdf">словачка – СЛНС-5/22</option>
-          <option value="izjava-biraca-ns-SLO-popunjiva.pdf">словеначка – СЛОНС-5/22</option>
-          <option value="izjava-biraca-ns-UK-popunjiva.pdf">украјинска – УКНС-5/22</option>
-          <option value="izjava-biraca-ns-CE-popunjiva.pdf">чешка – ЧЕНС-5/22</option>
+          <option value="izjava-biraca-ns-AL-popunjiva.pdf">албанска – АЛНС-5/26</option>
+          <option value="izjava-biraca-ns-AS-popunjiva.pdf">ашкалијска – АШНС-5/26</option>
+          <option value="izjava-biraca-ns-BO-popunjiva.pdf">бошњачка – БОНС-5/26</option>
+          <option value="izjava-biraca-ns-BUG-popunjiva.pdf">бугарска – БУГНС-5/26</option>
+          <option value="izjava-biraca-ns-BUNJ-popunjiva.pdf">буњевачка – БУЊНС-5/26</option>
+          <option value="izjava-biraca-ns-VL-popunjiva.pdf">влашка – ВЛНС-5/26</option>
+          <option value="izjava-biraca-ns-GR-popunjiva.pdf">грчка – ГРНС-5/26</option>
+          <option value="izjava-biraca-ns-EG-popunjiva.pdf">египатска – ЕГНС-5/26</option>
+          <option value="izjava-biraca-ns-MADJ-popunjiva.pdf">мађарска – МАЂНС-5/26</option>
+          <option value="izjava-biraca-ns-MK-popunjiva.pdf">македонска – МАКНС-5/26</option>
+          <option value="izjava-biraca-ns-NE-popunjiva.pdf">немачка – НЕНС-5/26</option>
+          <option value="izjava-biraca-ns-PO-popunjiva.pdf">пољска – ПОНС-5/26</option>
+          <option value="izjava-biraca-ns-RO-popunjiva.pdf">ромска – РОНС-5/26</option>
+          <option value="izjava-biraca-ns-RUM-popunjiva.pdf">румунска – РУМНС-5/26</option>
+          <option value="izjava-biraca-ns-RU-popunjiva.pdf">русинска – РУННС-5/26</option>
+          <option value="izjava-biraca-ns-SL-popunjiva.pdf">словачка – СЛНС-5/26</option>
+          <option value="izjava-biraca-ns-SLO-popunjiva.pdf">словеначка – СЛОНС-5/22 (РИК још није објавио образац 2026)</option>
+          <option value="izjava-biraca-ns-UK-popunjiva.pdf">украјинска – УКНС-5/26</option>
+          <option value="izjava-biraca-ns-HR-popunjiva.pdf">хрватска – ХРНС-5/26</option>
+          <option value="izjava-biraca-ns-CG-popunjiva.pdf">црногорска – ЦГНС-5/26</option>
+          <option value="izjava-biraca-ns-CE-popunjiva.pdf">чешка – ЧЕНС-5/26</option>
         </select>
         <a class="btn" id="dlNsPdf" href="#" download>⬇ Попуњив образац (PDF)</a></div>
     </div>
-    <div class="note">Демо издање: избори за националне савете још нису расписани, па програм користи званичне обрасце РИК-а са избора
-      одржаних 13. 11. 2022 (<a href="https://www.rik.parlament.gov.rs/tekst/326122">РИК – обрасци 2022</a>). Чим РИК објави обрасце
-      за нове изборе, стиже нова верзија – подешавања и евиденција остају. Верзија: <span id="nsVer">ns-v1.0.9</span>.</div>
+    <div class="note">Избори за чланове националних савета расписани су за <b>8. 11. 2026</b>; програм користи званичне обрасце РИК-а
+      објављене 23. 9. 2026 (<a href="https://www.rik.parlament.gov.rs/tekst/684717/obrasci-za-podnosenje-izbornih-lista-nsnm-2026.php">РИК – обрасци НСНМ 2026</a>).
+      Ако РИК измени или допуни обрасце (нпр. словеначки), стиже нова верзија – подешавања и евиденција остају. Верзија: <span id="nsVer">ns-v1.0.11</span>.</div>
     <p><b>Лиценца:</b> Окно НС се лиценцира посебно – кључ за Окно (избори за народне посланике) <b>не важи</b> за Окно НС.
        Без кључа ради као пробна верзија, исто као Окно; за кључ за Окно НС пишите на
        <a href="mailto:hello@betania.io">hello@betania.io</a>.</p>
