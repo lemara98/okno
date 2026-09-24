@@ -80,6 +80,11 @@
        (ХХНС-5/26, за сваку од 21 мањине која бира непосредно 8. 11. 2026 – двојезично где је прописано, нпр. МАЂНС-5 ћирилица + мађарски)
        и извози списак бирача у РИК-ов Excel образац ХХНС-6. Мањина се бира у Подешавањима. Инсталира се <b>упоредо</b> са Окном
        (други назив, фолдер и евиденција).</p>
+    <div class="novo"><b>Ново у верзији 1.0.14 – прерађени обрасци за свих 21 мањину и словеначки образац 2026.</b> Изјаве
+      бирача за све мањине штампају се на ручно уређеним обрасцима: текст истоветан РИК-овом, распоред збијенији (блок БИРАЧ уз
+      десну маргину, клаузула о овери на првој страни), а седам обрасаца (влашки, грчки, немачки, пољски, ромски, словеначки и
+      украјински) стаје на једну страну. РИК је објавио и словеначке обрасце за 2026 (СЛОНС-5/26 и СЛОНС-6/26), па ниједна
+      мањина више није на обрасцу из 2022.</div>
     <div class="novo"><b>Ново у верзији 1.0.13 – прерађен бошњачки образац.</b> Изјава за бошњачку националну мањину (БОНС-5/26)
       штампа се на ручно уређеном обрасцу: исти текст као РИК-ов, а блок БИРАЧ је збијен уз десну маргину са оба реда адресе
       поравната и целом клаузулом о овери која почиње на првој страни. Име бирача у два реда (ћирилица + изворни облик) сада се
@@ -108,11 +113,11 @@
       или само облик са картице. Име које је већ ћирилицом остаје исто.</div>
     <div class="cards" style="margin:12px 0">
       <div class="card"><h2>Windows 10 / 11</h2><p>Инсталациони чаробњак (.exe), Окно НС.</p>
-        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.13/OknoNS-setup.exe">⬇ Окно НС за Windows</a> <small class="v" id="vNsWin"></small></div>
+        <a class="btn" id="dlNsWin" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.14/OknoNS-setup.exe">⬇ Окно НС за Windows</a> <small class="v" id="vNsWin"></small></div>
       <div class="card"><h2>macOS</h2><p>Инсталациони пакет (.pkg), Окно НС.</p>
-        <a class="btn" id="dlNsMac" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.13/OknoNS.pkg">⬇ Окно НС за macOS</a> <small class="v" id="vNsMac"></small></div>
+        <a class="btn" id="dlNsMac" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.14/OknoNS.pkg">⬇ Окно НС за macOS</a> <small class="v" id="vNsMac"></small></div>
       <div class="card"><h2>Linux (Ubuntu / Debian)</h2><p>Пакет .deb – дупли клик или <code>sudo apt install ./okno-ns_amd64.deb</code></p>
-        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.13/okno-ns_amd64.deb">⬇ Окно НС .deb</a> <small class="v" id="vNsDeb"></small></div>
+        <a class="btn" id="dlNsDeb" href="https://github.com/lemara98/okno/releases/download/ns-v1.0.14/okno-ns_amd64.deb">⬇ Окно НС .deb</a> <small class="v" id="vNsDeb"></small></div>
       <div class="card"><h2>Без чипа?</h2><p>За бираче са старом личном картом без чипа: званични образац изјаве (ХХНС-5/26) као PDF
         са пољима за попуњавање на рачунару. Изаберите националну мањину:</p>
         <select id="selNsPdf" aria-label="Национална мањина">
@@ -142,7 +147,7 @@
     </div>
     <div class="note">Избори за чланове националних савета расписани су за <b>8. 11. 2026</b>; програм користи званичне обрасце РИК-а
       објављене 23. 9. 2026 (<a href="https://www.rik.parlament.gov.rs/tekst/684717/obrasci-za-podnosenje-izbornih-lista-nsnm-2026.php">РИК – обрасци НСНМ 2026</a>).
-      Ако РИК измени или допуни обрасце (нпр. словеначки), стиже нова верзија – подешавања и евиденција остају. Верзија: <span id="nsVer">ns-v1.0.13</span>.</div>
+      Ако РИК измени или допуни обрасце (нпр. словеначки), стиже нова верзија – подешавања и евиденција остају. Верзија: <span id="nsVer">ns-v1.0.14</span>.</div>
     <p><b>Лиценца:</b> Окно НС се лиценцира посебно – кључ за Окно (избори за народне посланике) <b>не важи</b> за Окно НС.
        Без кључа ради као пробна верзија, исто као Окно; за кључ за Окно НС пишите на
        <a href="mailto:hello@betania.io">hello@betania.io</a>.</p>
